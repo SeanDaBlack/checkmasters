@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container-box {
+    background-color: green;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    padding: 20px;
+}
+
+h1 {
+    background-color:#007ACC;
+    color: #fff;
+    padding: 20px;
+    margin: 0;
+    text-align: center;
+}
+
+.profile-content {
+    text-align: center;
+}
+
+.profile-picture img {
+    max-width: 150px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+}
+
+h2 {
+    margin-top: 20px;
+}
+
+.user-info {
+    font-size: 18px;
+}
+
+.actions {
+    text-align: center;
+}
+
+.actions a button {
+    background-color: #007ACC;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+}

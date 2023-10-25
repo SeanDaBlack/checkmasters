@@ -1,30 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <title>Profile</title>
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/profileCSS.css">
 </head>
 <body>
-    <h1>49er's CheckMates</h1>
-    <div class="container">
-        <a href="/home"><button>Home</button></a>
-        <a href="#"><button>Settings</button></a>
-        <a href="#"><button>Tournaments</button></a>
-        <a href="/profile"><button>Profile</button></a>
-    </div>
+    <div class="container-box">
+        <h1>49er's CheckMates</h1>
 
-    <h2>{{ user_info.name }}'s Profile Information</h2>
-    <div class="container">
-        {% if user_info %}
-            {% if user_info.profile_picture%}
-                <img src="{{ user_info.profile_picture }}" alt="Profile Picture">
-            {% endif %}
-            <p>Full Name: {{ user_info.full_name }}</p>
-            <p>User Name: {{ user_info.user_name }}</p>
-            <p>Email: {{ user_info.email }}</p>
-        {% endif %}
-        <br/> <a href="/logout"><button>Logout</button></a>
+        <div class="profile-content">
+            <div class="profile-picture">
+                
+                <img src="" alt="Profile Picture">
+            </div>
+            
+            <h2>{{ user_info.name }}'s Profile Information</h2>
+           <div class="actions">
+                <a href="/home"><button>Home</button></a>
+                <a href="#"><button>Settings</button></a>
+                <a href="#"><button>Tournaments</button></a>
+                <a href="/profile"><button>Profile</button></a>
+                <a href="/logout"><button>Logout</button></a>
+            </div>
+
+            <div class="user-info">
+                <p>Full Name: {{ user_info.full_name }}</p>
+                <p>User Name: {{ user_info.user_name }}</p>
+                <p>Email: {{ user_info.email }}</p>
+            </div>
+            
+           
+        </div>
     </div>
 </body>
 </html>
