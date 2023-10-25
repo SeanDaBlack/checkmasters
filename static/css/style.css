@@ -7,20 +7,20 @@ body {
     margin: 0;
 }
 h1 {
-    border: 2px solid darkgreen; /* Add a black border around the h1 */
-    padding: 10px; /* Add padding to create space between text and border */
+    border: 2px solid darkgreen; 
+    padding: 10px; 
 }
 
 .login-box {
     text-align: center;
-    background-color: green; /* Change the background color to blue */
-    color: white; /* Set text color to white */
+    background-color: green; 
+    color: white; 
     padding: 20px;
     border-radius: 10px;
-    width: 300px; /* Adjust the width as needed */
+    width: 300px; 
 }
 
 button {
     display: block;
-    margin: 10px auto; /* Add some margin below the button */
+    margin: 10px auto; 
 }
