@@ -1,0 +1,59 @@
+
+.big-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  background-image:url('../../images/uncc4.jpg');
+    
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  background-color: green;
+    
+}
+
+.actions {
+    margin-top: 20px;
+
+}
+
+.inbox {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.message-list {
+    list-style: none;
+    padding: 0;
+}
+
+.message-list li {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.message-sender {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.message-content {
+    font-size: 16px;
+}
+
+.new-message-button {
+    background-color: gray;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 0;
+    cursor: pointer;
+    border-radius: 5px;
+}
