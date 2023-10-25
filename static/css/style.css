@@ -1,5 +1,6 @@
 body {
-    background-color: lightblue;   
+    background-image:url('../../images/UNCC\ student\ union\ file.jpg');
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
