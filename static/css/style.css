@@ -1,14 +1,26 @@
 body {
-    background-color: green;
+    background-color: lightblue;   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+h1 {
+    border: 2px solid darkgreen; /* Add a black border around the h1 */
+    padding: 10px; /* Add padding to create space between text and border */
 }
 
-/* Center text and other elements */
-h1, p, h2, a {
+.login-box {
     text-align: center;
+    background-color: green; /* Change the background color to blue */
+    color: white; /* Set text color to white */
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px; /* Adjust the width as needed */
 }
 
-/* Center the login button */
 button {
     display: block;
-    margin: 0 auto;
+    margin: 10px auto; /* Add some margin below the button */
 }
