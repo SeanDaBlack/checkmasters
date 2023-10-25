@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CheckMates</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>49er's CheckMates</h1>
+
+    <div class="container">
+        <h2>Hello, {{ user_name }}!</h2>
+        <p>Welcome to CheckMates! Here, you can find the settings, leaderboard, upcoming tournaments and more.</p>
+        <a href="/home"><button>Home</button></a>
+        <a href="#"><button>Settings</button></a>
+        <a href="#"><button>Tournaments</button></a>
+        <a href="/profile"><button>Profile</button></a>
+    </div>
+
+    <div class="navigation">
+        <a href="#"><button>1 Player</button></a>
+        <a href="#"><button>2 Player</button></a>
+        <a href="#"><button>Spectate</button></a>
+        <a href="#"><button>Leaderboard</button></a>
+        <button onclick="openTutorialModal()">View Tutorial</button>
+    </div>
+
+    <!-- Tutorial Modal -->
+    <div id="tutorialModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeTutorialModal()">&times;</span>
+            <h3>Welcome to the CheckMates Tutorial</h3>
+            <p>This is a brief tutorial on how to use the site. Follow the steps to get started:</p>
+            <ol>
+                <li>Connect with friends: You can send friend requests and connect with other members through their profiles.</li>
+                <li>Checkers Tutorial: Watch this brief video on how to play checkers and master the game.</li>
+                <!-- Embedded YouTube Video -->
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/GnHQJ-PSBB0?si=dxahilGcDlTIjjmP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <li>Stay Connected: Check the 'Tournaments' section for updates on events and activities.</li>
+            </ol>
+        </div>
+    </div>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
