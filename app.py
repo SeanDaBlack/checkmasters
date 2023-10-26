@@ -122,6 +122,11 @@ def logout():
     return redirect("/")
 
 
+@app.route("/inbox")
+def inbox():
+    return render_template("inbox.html")
+
+
 @app.route("/profile")
 def profile():
     user_info = {
