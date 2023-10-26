@@ -104,3 +104,7 @@ if __name__ == "__main__":
 @app.route("/settings")
 def settings():
     return render_template("settings.html")
+
+@app.route("/inbox")
+def inbox():
+    return render_template("inbox.html")
