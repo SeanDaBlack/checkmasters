@@ -15,10 +15,14 @@
                 <a href="#"><button>Settings</button></a>
             <h2>{{ user_info.name }}'s Profile Information</h2>
            <div class="actions">
+                <a href="/home"><button>Home</button></a>
+                <a href="inbox"><button>Messages</button></a>
+                <a href="#"><button>Settings</button></a>
             </div>
            <div class="profile-picture">
                 <img src="{{ user_info.profile_picture }}" alt="Profile Picture">
            </div>
+           <h2>{{ user_info.name }}'s Profile Information</h2>
             <div class="user-info">
                 <p>Full Name: {{ user_info.full_name }}</p>
                 <p>Email: {{ user_info.email }}</p>
