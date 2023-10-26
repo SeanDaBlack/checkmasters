@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
-    <link rel="stylesheet" href="../static/css/profileCSS.css">
-  <script src="new-message.js"></script>
+    <link rel="stylesheet" href="../static/css/inbox.css">
+    <script src="{{ url_for('static', filename='js/newMessage.js') }}"></script>
 
 </head>
 <body>
@@ -13,12 +13,11 @@
             <div class="container-box">
                 <h1>49er's CheckMates</h1>
                 <div class="actions">
-                    <a href="./home"><button>Home</button></a>
-                    <a href="./profile"><button>Profile</button></a>
+                    <a href="/home"><button>Home</button></a>
+                    <a href="/profile"><button>Profile</button></a>
                     <a href="#"><button>Settings</button></a>
                     <a href="#"><button>Tournaments</button></a>
-                    
-                   
+                    <a href="/logout"><button>Logout</button></a>
                 </div>
             </div>
 

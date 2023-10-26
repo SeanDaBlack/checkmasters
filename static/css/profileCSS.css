@@ -1,5 +1,4 @@
 body {
-    font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
@@ -11,13 +10,15 @@ body {
 
 .container-box {
     background-color: green;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 600px;
     padding: 20px;
 }
 
 h1 {
-    background-color:#007ACC;
+    border: 2px solid darkgreen;
+    padding: 10px;
     color: #fff;
     padding: 20px;
     margin: 0;
@@ -37,21 +38,29 @@ h1 {
 
 h2 {
     margin-top: 20px;
+    color: white;
 }
 
 .user-info {
     font-size: 18px;
+    color: white;
 }
 
 .actions {
     text-align: center;
 }
 
-.actions a button {
-    background-color: #007ACC;
-    color: #fff;
+button {
+    background-color: #B3A369;
+    color: #FFFFFF;
     border: none;
+    border-radius: 5px;
     padding: 10px 20px;
     margin: 5px;
     cursor: pointer;
+}
+
+button:hover {
+    background-color: #FFFFFF;
+    color: #B3A369;
 }
