@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CheckMates</title>
+    <link rel="stylesheet" href="../static/css/homepageCSS.css">
+</head>
+<body>
+    <div class="container-box">
+        <h1>49er's CheckMates</h1>
+        <div class="container">
+            <h2>Hello, {{ user_name }}!</h2>
+            <p>Welcome to CheckMates! Here, you can find the settings, leaderboard, upcoming tournaments, and more.</p>
+            <div class="horizontal-buttons">
+                <a href="#"><button class="button settings-button">Settings</button></a>
+                <a href="/home"><button class="button home-button">Home</button></a>
+                <a href="/profile"><button class="button profile-button">Profile</button></a>
+                <a href="#"><button class="button tournaments-button">Tournaments</button></a>
+            </div>
+        </div>
+        <div class="navigation">
+            <div class="vertical-buttons">
+                <a href="#"><button class="button player1-button">1 Player</button></a>
+                <a href="#"><button class="button player2-button">2 Player</button></a>
+                <a href="#"><button class="button spectate-button">Spectate</button></a>
+                <a href="#"><button class="button leaderboard-button">Leaderboard</button></a>
+                <button class="button tutorial-button" id="tutorialButton" onclick="openTutorialModal()">View Tutorial</button>
+            </div>
+        </div>
+
+        <div id="tutorialModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeModal" onclick="closeTutorialModal()">&times;</span>
+                <h3>Welcome to the CheckMates Tutorial</h3>
+                <p>This is a brief tutorial on how to use the site. Follow the steps to get started:</p>
+                <ol>
+                    <li>Connect with friends: You can send friend requests and connect with other members through their profiles.</li>
+                    <li>Checkers Tutorial: Watch this brief video on how to play checkers and master the game.</li>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/GnHQJ-PSBB0?si=dxahilGcDlTIjjmP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <li>Stay Connected: Check the 'Tournaments' section for updates on events and activities.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

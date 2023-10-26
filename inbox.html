@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="../static/css/inbox.css">
+    <script src="{{ url_for('static', filename='js/newMessage.js') }}"></script>
+
+</head>
+<body>
+    <div class="big-box">
+        <div class="container">
+            <div class="container-box">
+                <h1>49er's CheckMates</h1>
+                <div class="actions">
+                    <a href="/home"><button>Home</button></a>
+                    <a href="/profile"><button>Profile</button></a>
+                    <a href="#"><button>Settings</button></a>
+                    <a href="#"><button>Tournaments</button></a>
+                    <a href="/logout"><button>Logout</button></a>
+                </div>
+            </div>
+
+            <div class="inbox">
+                <h2>Message Inbox</h2>
+                <ul class="message-list">
+                    <li>
+                        <div class="message-sender">John Doe</div>
+                        <div class="message-content">Hello! How are you?</div>
+                    </li>
+                    <li>
+                        <div class="message-sender">Alice Smith</div>
+                        <div class="message-content">Don't forget our chess match tomorrow!</div>
+                    </li>
+                </ul>
+<button class="new-message-button" id="new-message-button" onclick="openNewMessageWindow()">Send New Message</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
