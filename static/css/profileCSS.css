@@ -6,6 +6,8 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    background-image: url("static/images/uncc3.jpg");
+    background-size: cover;
 }
 
 .container-box {
