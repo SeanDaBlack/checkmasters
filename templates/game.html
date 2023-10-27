@@ -1,0 +1,22 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <!-- <style>html, body {height: 100%;}</style> -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/game.css">
+    
+</head>
+<body>
+
+    <div class="frame">
+        <!-- <iframe class="chat" src="chat" frameborder="0"scrolling="no"></iframe> -->
+        {% with chat_messages=chat_messages %}
+        {% include "chat.html" %}
+        {% endwith %}
+    </div>
+</body>
+</html>

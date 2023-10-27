@@ -1,0 +1,36 @@
+{% extends '_layouts.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+{% endblock %}
+
+
+{% block body %}
+
+    <div>
+    <h1>Register</h1>
+    <p>Register with email and password</p>
+    </div>
+
+    <div class="sign-up-form">
+        <form method="post" action="/setuser">
+            <div>
+                <input type="text" name="fname" placeholder="First Name" required="true">
+                <input type="text" name="lname" placeholder="Last Name">
+            </div>
+            <input type="text" name="username" placeholder="Username">
+            <br>
+            <input type="email" name="email" placeholder="Email">
+            <br>
+            <input type="password" name="password" placeholder="Password">
+            <br>
+            <input type="password" name="confirm_password" placeholder="Confirm Password">
+            <br>
+            <input type="submit" value="Register">
+        </form>
+    </div>
+
+
+{% endblock %}
