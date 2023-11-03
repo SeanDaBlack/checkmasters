@@ -1,7 +1,40 @@
 .frame {
     border-style: none;
     width: 50%;
-    height: 90%;
+    height: 99%;
     position: absolute;
     right: 0;
+}
+
+body {
+    /* height: 100%; */
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+.container-box {
+    background-color: green;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 600px;
+    padding: 20px;
+}
+
+h1 {
+    border: 2px solid darkgreen;
+    padding: 10px;
+    color: #fff;
+    padding: 20px;
+    margin: 0;
+    text-align: center;
+}
+
+button {
+    z-index: 1;
 }

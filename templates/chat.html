@@ -1,34 +1,48 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="../static/css/chat.css">
 </head>
+
 <body>
     <div class="main-container">
-    <div class="messages">
-        <div class="message ours">
-            <div class="identity">
-                <p>PFP and Name Here</p>
+        <div id='messages' class="messages">
+            <div class="message ours">
+                <div class="identity">
+                    {% if user_info.profile_picture == None %}
+                    <img src="../static/images/userAccount.jpg" alt="">
+                    {% else %}
+                    <img src="{{ user_info.profile_picture }}" alt="">
+                    {% endif %}
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, tempora itaque recusandae voluptate
+                    fugit ab sequi</p>
             </div>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, tempora itaque recusandae voluptate fugit ab sequi, voluptas, nobis quidem omnis alias! Voluptatibus quia quidem ab explicabo labore tenetur modi reiciendis.</p>
-        </div>
-        <div class="message theirs">
-            <div class="identity">
-                <p>PFP and Name Here</p>
+            <div class="message theirs">
+                <div class="identity">
+                    {% if user_info.profile_picture == None %}
+                    <img src="../static/images/userAccount.jpg" alt="">
+                    {% else %}
+                    <img src="{{ user_info.profile_picture }}" alt="">
+                    {% endif %}
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In voluptates debitis repellat quam id
+                    provident voluptas laudantium at rerum maiores? Et architecto nemo nam nulla, harum laudantium odio
+                    consequatur autem?</p>
             </div>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In voluptates debitis repellat quam id provident voluptas laudantium at rerum maiores? Et architecto nemo nam nulla, harum laudantium odio consequatur autem?</p>
+
+
+
+
         </div>
-
-        
-
-
-
-    </div>
         <div id="not-messages">
-            <input type="chat-box" placeholder="Enter Message Here"/>
-            <button type="submit" class="send">Send Message</button>
+            <input id="chat-box" type="chat-box" placeholder="Enter Message Here" />
+            <button id="send" type="submit" class="send">Send Message</button>
         </div>
     </div>
+    <input id='hidden-name' class="hidden-name"value="{{ user_info.name }}">
 </body>
+
 </html>
