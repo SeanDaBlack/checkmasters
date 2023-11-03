@@ -1,5 +1,5 @@
 body {
-    background-image:url('../../images/UNCC-student-union-file.jpg');
+    background-image:url("static/images/UNCC-student-union-file.jpg");
     background-size: cover;
     display: flex;
     justify-content: center;
