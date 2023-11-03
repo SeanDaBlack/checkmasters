@@ -84,14 +84,16 @@ def setuser():
 
     response = make_response(render_template('home.html', cookies=request.cookies))
 
-    response.set_cookie('user', user["name"])
-    response.set_cookie('given_name', user["given_name"])
-    response.set_cookie('email', user["email"])
-
+    session["login_type"] = "email"
+    session["name"] = request.form['fname'] + " " + request.form['lname']
+    session["username"] = request.form['username']
+    session["given_name"] = request.form['fname']
+    session["email"] = request.form['email']
+    session["profile_picture"] = "./images/userAccount.png"
 
 
     # print(user)
-    return redirect('/home')
+    return redirect('/callback')
 
 
 @app.route("/callback")
@@ -102,16 +104,16 @@ def callback():
     if not session["state"] == request.args["state"]:
         abort(500)  # State does not match!
 
-        credentials = flow.credentials
-        request_session = requests.session()
-        cached_session = cachecontrol.CacheControl(request_session)
-        token_request = google.auth.transport.requests.Request(session=cached_session)
+    credentials = flow.credentials
+    request_session = requests.session()
+    cached_session = cachecontrol.CacheControl(request_session)
+    token_request = google.auth.transport.requests.Request(session=cached_session)
 
-        id_info = id_token.verify_oauth2_token(
-            id_token=credentials._id_token,
-            request=token_request,
-            audience=GOOGLE_CLIENT_ID
-        )
+    id_info = id_token.verify_oauth2_token(
+        id_token=credentials._id_token,
+        request=token_request,
+        audience=GOOGLE_CLIENT_ID
+    )
 
     session["login_type"] = "google"
     session["google_id"] = id_info.get("sub")
