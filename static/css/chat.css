@@ -6,7 +6,7 @@
 .main-container {
     display: flex;
     flex-direction: column;
-    border: 5px solid #bdc3c7;
+    /* border: 5px solid #bdc3c7; */
     background-color: azure;
     height: 100%;
     width: 100%;
@@ -20,9 +20,19 @@
 }
 
 .messages div.identity {
-    border: 3px solid black;
+    /* border: 3px solid black; */
     min-width: 15%;
     display: flex;
+    justify-content: center;
+}
+
+.identity img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: .5em;
+    align-self: center;
+    justify-self: center;
 }
 
 .identity p {
@@ -42,26 +52,28 @@
     font-size: 1.2em;
     margin: 0;
     padding: 0;
-    text-align: right;
+    text-align: left;
 }
-
 .ours {
     color: var(--our-color);
-    border: 3px dotted var(--our-color);
+    /* border: 3px dotted var(--our-color); */
     margin-right: auto;
-
+    width: 100%;
+}
+.ours p {
+    color: var(--our-color);
 }
 
 .theirs{
-    border: 3px dotted var(--their-color);
+    /* border: 3px dotted var(--their-color); */
     margin-left: auto;
     color: var(--their-color);
-
+    width: 100%;
 }
 
 #not-messages {
     display: flex;
-    border: 1px solid#2ecc71;
+    /* border: 1px solid#2ecc71; */
 }
 #not-messages input {
     width: 100%;
@@ -70,11 +82,32 @@
     font-size: 1.2em;
     padding: 0 1rem;
     box-sizing: border-box;
+    margin: auto;
 }
 
 button.send {
     background-color: #2ecc71;
     height: 100%;
     width: 15%;
+    border: none;
+    align-self: center;
 }
 
+
+
+
+button {
+    background-color: #B3A369;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    align-self: center;
+
+}
+
+.hidden-name {
+    display: none;
+}
