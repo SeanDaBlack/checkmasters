@@ -2,32 +2,37 @@ import os
 import pathlib
 
 import requests
-from flask import Flask, session, abort, redirect, request, render_template
+from flask import Flask, session, abort, redirect, request, render_template, make_response
 from google.oauth2 import id_token
 from google_auth_oauthlib.flow import Flow
 from pip._vendor import cachecontrol
 import google.auth.transport.requests
 
+from static.py.chat import socketio
+# from flask_sqlalchemy import SQLAlchemy
+
 app = Flask(__name__)
 app.secret_key = "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"
 
-os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
+socketio.init_app(app)
 
+
+# Google Login Fuctionlity
+os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 GOOGLE_CLIENT_ID = "301822394319-o8gridp2md6qcpc0uk0clkug0puecbio.apps.googleusercontent.com"
 client_secrets_file = os.path.join(pathlib.Path(__file__).parent, "client_secret.json")
-
 flow = Flow.from_client_secrets_file(
     client_secrets_file=client_secrets_file,
     scopes=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email",
             "openid"],
-    redirect_uri="http://127.0.0.1:5000/callback"
+    redirect_uri="http://127.0.0.1:5000/callback?login=google"
 )
-
-
 def login_is_required(function):
     def wrapper(*args, **kwargs):
-        if "google_id" not in session:
+        if "google" in session and "google_id" not in session:
             return abort(401)  # Authorization required
+        elif "email" in session and "name" not in session:
+            return abort(401)
         else:
             return function()
 
@@ -43,6 +48,7 @@ def login():
 
 @app.route("/callback")
 def callback():
+
     flow.fetch_token(authorization_response=request.url)
 
     if not session["state"] == request.args["state"]:
@@ -59,12 +65,46 @@ def callback():
         audience=GOOGLE_CLIENT_ID
     )
 
+    session["login_type"] = "google"
     session["google_id"] = id_info.get("sub")
     session["name"] = id_info.get("name")
     session["given_name"] = id_info.get("given_name")
     session["email"] = id_info.get("email")
     session["profile_picture"] = id_info.get("picture")
+
     return redirect("/home")
+
+
+# Email Login Functionality
+
+@app.route("/signup")
+def signup():
+    return render_template('signup.html')
+
+@app.route("/elogin")
+def elogin():
+    return render_template('elogin.html')
+
+@app.route("/setuser", methods=['POST'])
+def setuser():
+
+    session["login_type"] = "email"
+    session["name"] = request.form['fname'] + " " + request.form['lname']
+    session["username"] = request.form['username']
+    session["given_name"] = request.form['fname']
+    session["email"] = request.form['email']
+    session["profile_picture"] = "/static/images/userAccount.jpg"
+
+    return redirect('/home')
+
+
+@app.route("/spectate")
+def spectate():
+    return render_template("spectate.html")
+
+
+
+
 
 
 @app.route("/logout")
@@ -89,6 +129,35 @@ def profile():
     return render_template("profile.html", user_info=user_info)
 
 
+
+
+@app.route("/host")
+def host():
+    return render_template("host.html")
+@app.route("/join")
+def join():
+    return render_template("join.html")
+
+@app.route("/game")
+def game():
+
+    lobby_name = request.args['lobby']
+    # spectate = request.args['spectate']
+
+    user_info = {
+        "name": session.get("given_name"),
+        "full_name": session.get("name"),
+        "email": session.get("email"),
+        "profile_picture": session.get("profile_picture"),
+        # "sid": request.sid
+    }
+    user_info["name"] = session.get("given_name")
+    user_info["profile_picture"] = "static/images/userAccount.jpg"
+    # print(user_info)
+    return render_template("game.html", user_info=user_info, lobby_name=lobby_name)
+
+
+
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -102,4 +171,4 @@ def home():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    socketio.run(app, debug=True)

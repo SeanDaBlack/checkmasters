@@ -1,0 +1,65 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <!-- <style>html, body {height: 100%;}</style> -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <link rel="stylesheet" href="../static/css/game.css">
+    <link rel="stylesheet" href="../static/css/signup.css">
+    <!-- <link rel="stylesheet" href="../static/css/profileCSS.css"> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+
+    
+</head>
+<body>
+    <button id="open-room">Open Room</button>
+    <div id='game' class="frame">
+        <!-- <iframe class="chat" src="chat" frameborder="0"scrolling="no"></iframe> -->
+        {% with user_info=user_info %}
+        {% include "chat.html" %}
+        {% endwith %}
+    </div>
+    <input id='hidden-room' class="hidden-name" value="{{ lobby_name }}">
+    <script type="text/javascript" charset="utf-8">
+        const socket = io({autoConnect: false});
+
+
+        socket.on('chat', function(data){
+            console.log(data.message);
+            let img = document.createElement('img');
+            img.src = '../static/images/userAccount.jpg';
+
+            let div = document.createElement('div');
+            div.className = 'identity';
+            div.appendChild(img);
+
+            let p = document.createElement('p');
+            p.innerHTML = data.message;
+
+            let div2 = document.createElement('div');
+            if (data.name == document.getElementById('hidden-name').value)
+                div2.className = 'message ours';
+            else
+                div2.className = 'message theirs';
+            div2.appendChild(div);
+            div2.appendChild(p);
+
+            document.getElementById('messages').prepend(div2);
+        });
+    </script>
+    <script type="text/javascript" charset="utf-8">
+        document.getElementById("open-room").addEventListener("click", function () {
+
+            socket.connect();
+            socket.on('connect', function () {
+                socket.emit('join', { "lobby": '{{ lobby_name }}', "name": '{{ user_info.name }}' });
+            });
+            document.getElementById("open-room").style.display = "none";
+        })
+    </script>
+    <script src="{{ url_for('static', filename='js/socket.js') }}"></script>
+</body>
+</html>
