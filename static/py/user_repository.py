@@ -14,11 +14,11 @@ class UserRepository:
     
     def get_user_by_email(self, email):
 
-        return User.query.filter(User.email.like(f'%{email}%')).first()
+        return User.query.filter(User.email==email).first()
     
     def get_user_by_id(self, user_id):
 
-        return User.query.filter(User.user_id.like(f'%{user_id}%')).first()
+        return User.query.filter(User.user_id==user_id).first()
 
     def get_new_user_num(self):
         return len(User.query.all())+1
@@ -34,3 +34,12 @@ class UserRepository:
 
 
 _user_repo = UserRepository()
+
+def create_username(fname: str, lname: str):
+    ''' Create a username from a first and last name'''
+    print(fname, lname)
+    username = fname.lower() + lname.lower()
+    if _user_repo.get_user_by_username(username) is None:
+        return username
+    else:
+        return username + str(_user_repo.get_new_user_num())
