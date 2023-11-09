@@ -25,7 +25,7 @@ document.getElementById("send").addEventListener("click", function(){
     document.getElementById("chat-box").value = "";
 })
 
-document.getElementById("send").addEventListener("keyup", function(event){
+document.getElementById("chat-box").addEventListener("keyup", function(event){
 
     if (event.key == "Enter") {
         const val = document.getElementById("chat-box").value;
@@ -33,7 +33,7 @@ document.getElementById("send").addEventListener("keyup", function(event){
         const room = document.getElementById("hidden-room").value;
 
         const data = hidden_name + ": " + val
-        socket.emit("room_message", {"data":data, "lobby_name":room})
+        socket.emit("room_message", {"data":data, "room":room})
         document.getElementById("chat-box").value = "";
     }
 })

@@ -59,42 +59,6 @@ def login():
     session["state"] = state
     return redirect(authorization_url)
 
-@app.route("/signup")
-def signup():
-    # user = ""
-    user = request.cookies.get('user')
-    print(user)
-
-    if user == None:
-        return make_response(render_template('signup.html'))
-    
-    return render_template('signup.html')
-
-@app.route("/setuser", methods=['POST'])
-def setuser():
-    # user = request.form['user']
-
-    print(request.form['fname'])
-
-    user = {
-        "name": request.form['username'],
-        "given_name": request.form['fname'],
-        "email": request.form['email'],
-    }
-
-    response = make_response(render_template('home.html', cookies=request.cookies))
-
-    session["login_type"] = "email"
-    session["name"] = request.form['fname'] + " " + request.form['lname']
-    session["username"] = request.form['username']
-    session["given_name"] = request.form['fname']
-    session["email"] = request.form['email']
-    session["profile_picture"] = "./images/userAccount.png"
-
-
-    # print(user)
-    return redirect('/callback')
-
 
 @app.route("/callback")
 def callback():
@@ -177,18 +141,6 @@ def setuser():
         session["email"] = user.email
         session["profile_picture"] = "/static/images/userAccount.jpg"
         return redirect('/home')
-    
-    
-    # print("here")
-
-    session["login_type"] = "email"
-    session["name"] = request.form['fname'] + " " + request.form['lname']
-    session["username"] = request.form['username']
-    session["given_name"] = request.form['fname']
-    session["email"] = request.form['email']
-    session["profile_picture"] = "/static/images/userAccount.jpg"
-
-    return redirect('/home')
 
 
 @app.route("/spectate")
@@ -245,39 +197,6 @@ def game():
     user_info["profile_picture"] = "static/images/userAccount.jpg"
     # print(user_info)
     return render_template("game.html", user_info=user_info, lobby_name=lobby_name)
-
-
-@app.route("/host")
-def host():
-    return render_template("host.html")
-@app.route("/join")
-def join():
-    return render_template("join.html")
-
-@app.route("/game")
-def game():
-
-    lobby_name = request.args['lobby']
-    # spectate = request.args['spectate']
-
-    user_info = {
-        "name": session.get("given_name"),
-        "full_name": session.get("name"),
-        "email": session.get("email"),
-        "profile_picture": session.get("profile_picture"),
-        # "sid": request.sid
-    }
-    user_info["name"] = session.get("given_name")
-    user_info["profile_picture"] = "static/images/userAccount.jpg"
-    # print(user_info)
-    return render_template("game.html", user_info=user_info, lobby_name=lobby_name)
-
-
-
-@app.route("/game")
-def game():
-    chat_messages = ""
-    return render_template("game.html", chat_messages=chat_messages)
 
 @app.route("/")
 def index():
