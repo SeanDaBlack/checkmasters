@@ -65,3 +65,32 @@ div form input[type="checkbox"] {
 input[type="checkbox"]:checked{
     background-color:green;
 }
+
+.submit {
+    background-color: #B3A369;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #FFFFFF;
+    color: #B3A369;
+}
+
+button.submit {
+    margin: 1.5rem;
+}
+
+.alert {
+    color: red;
+    font-size: 1rem;
+    font-weight: bold;
+    border: red 1px solid;
+    margin: 0;
+    padding: 0;
+
+}

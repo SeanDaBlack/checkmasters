@@ -9,12 +9,24 @@ from pip._vendor import cachecontrol
 import google.auth.transport.requests
 
 from static.py.chat import socketio
-# from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
+from static.py.models import User, db
+import uuid
+from static.py.user_repository import _user_repo as users
+from static.py.PassHandler import PassHandler
+
 
 app = Flask(__name__)
 app.secret_key = "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"
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.abspath('static/db/users.db')
 
+# db = SQLAlchemy(app)
 socketio.init_app(app)
+db.init_app(app)
+with app.app_context():
+    db.create_all()
+
+pass_handler = PassHandler()
 
 
 # Google Login Fuctionlity
@@ -85,8 +97,51 @@ def signup():
 def elogin():
     return render_template('elogin.html')
 
+@app.route("/loginuser", methods=['POST'])
+def loginuser():
+
+    user = users.get_user_by_username(request.form['username'])
+    if user is None:
+        # print("User not found")
+        return render_template('elogin.html', error="User not found")
+    if pass_handler.verify_password(request.form['password'], user.password) is False:
+        # print("Incorrect password")
+        return render_template('elogin.html', error="Incorrect password")
+    print(user.username)
+    session["name"] = user.username
+    session["given_name"] = user.first_name
+    # print(user.first_name)
+    session["email"] = user.email
+    session["profile_picture"] = "/static/images/userAccount.jpg"
+    
+
+    return redirect('/home')
+
 @app.route("/setuser", methods=['POST'])
 def setuser():
+
+    # print(request.form['username'])
+
+    user = users.get_user_by_username(request.form['username'])
+    # print(user)
+    if user is not None:
+        return render_template('signup.html', error="Username already exists")
+    elif users.get_user_by_email(request.form['email']) is not None:
+        return render_template('signup.html', error="Email already exists")
+    elif request.form['password'] != request.form['confirm_password']:
+        return render_template('signup.html', error="Passwords do not match")
+    else:
+        user = users.create_user(request.form['fname'], request.form['lname'], request.form['email'], request.form['username'], pass_handler.hash_password(request.form['password']))
+
+        session["login_type"] = "email"
+        session["name"] = user.username
+        session["given_name"] = user.first_name
+        session["email"] = user.email
+        session["profile_picture"] = "/static/images/userAccount.jpg"
+        return redirect('/home')
+    
+    
+    # print("here")
 
     session["login_type"] = "email"
     session["name"] = request.form['fname'] + " " + request.form['lname']
@@ -160,6 +215,8 @@ def game():
 
 @app.route("/")
 def index():
+    if session.get("name") is not None:
+        return redirect("/home")
     return render_template("index.html")
 
 

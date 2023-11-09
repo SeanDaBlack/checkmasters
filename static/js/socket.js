@@ -15,7 +15,6 @@ function startSocket() {
 //     document.getElementById("game").style.display = "block";
 // });
 
-
 document.getElementById("send").addEventListener("click", function(){
     const val = document.getElementById("chat-box").value;
     const hidden_name = document.getElementById("hidden-name").value;

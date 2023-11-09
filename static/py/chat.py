@@ -22,10 +22,13 @@ def handle_message(message):
 def handle_room_message(data):
     print(f'received room message: {data["data"]}')
 
-    name = data["data"].split(':')[0]
-    msg = data["data"].split(':')[1].strip()
+    # name = data["data"].split(':')[0]
+    # msg = data["data"].split(':')[1].strip()
 
-    emit('chat', {"message":msg, 'name':name}, to=data['room'])
+    message = Message(data)
+    # print(message.to_string())
+
+    emit('chat', message.to_dict(), to=data['room'])
 
 
 @socketio.on('user_join')
@@ -53,3 +56,19 @@ def on_leave(data):
 
 
 
+class Message():
+    def __init__(self, message):
+
+        self.message = message["data"].split(':')[1].strip()
+        self.name = message["data"].split(':')[0]
+
+    def clean_message(self):
+        # Add functionality for checking for bad words / filter words
+
+        return self.message
+    
+    def to_string(self):
+        return f"{self.name}: {self.message}"
+    
+    def to_dict(self):
+        return {"name":self.name, "message": self.message}

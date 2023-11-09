@@ -35,3 +35,12 @@ button:hover {
     background-color: #FFFFFF;
     color: #B3A369;
 }
+
+.logo {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto 10px;
+    display: block;
+
+    border: 2px solid white;
+}
