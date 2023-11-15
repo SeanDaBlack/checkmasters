@@ -115,7 +115,6 @@ def loginuser():
     # print(user.first_name)
     session["email"] = user.email
     session["profile_picture"] = "/static/images/userAccount.jpg"
-    
 
     return redirect('/home')
 
@@ -213,4 +212,4 @@ def home():
 
 
 if __name__ == "__main__":
-    socketio.run(app, debug=True)
+    socketio.run(app, debug=True, allow_unsafe_werkzeug=True)
