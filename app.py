@@ -146,11 +146,6 @@ def setuser():
 def spectate():
     return render_template("spectate.html")
 
-
-
-
-
-
 @app.route("/logout")
 def logout():
     session.clear()
@@ -209,6 +204,10 @@ def index():
 def home():
     user_name = session.get("given_name")
     return render_template("home.html", user_name=user_name)
+
+@app.route("/1player")
+def onePlayer():
+    return render_template("player1.html")
 
 
 if __name__ == "__main__":
