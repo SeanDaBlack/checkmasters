@@ -2,63 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Single Player</title>
-    <link rel="stylesheet" href="../static/css/onePlayer.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/onePlayer.css') }}">
+    <title>Checkers Game</title>
 </head>
 <body>
-<div class = "game-board">
-    <div class="redTile"></div><div class="blackTile"> <div class="whitePiece"></div></div>
-    <div class="redTile"></div><div class="blackTile"></div>
-    <div class="redTile"></div><div class="blackTile"></div>
-    <div class="redTile"></div><div class="blackTile"></div>
-
-    <div class="blackTile"></div><div class="redTile"></div>
-    <div class="blackTile"></div><div class="redTile"></div>
-    <div class="blackTile"></div><div class="redTile"></div>
-    <div class="blackTile"></div><div class="redTile"></div>
-
-    <div class="redTile"></div><div class="blackTile"></div>
-    <div class="redTile"></div><div class="blackTile"></div>
-    <div class="redTile"></div><div class="blackTile"></div>
-    <div class="redTile"></div><div class="blackTile"></div>
-
-    <div class="blackTile"></div><div class="redTile"></div>
-    <div class="blackTile"></div><div class="redTile"></div>
-    <div class="blackTile"></div><div class="redTile"></div>
-    <div class="blackTile"></div><div class="redTile"></div>
-
-    <div class="redTile"></div><div class="blackTile"></div>
-    <div class="redTile"></div><div class="blackTile"></div>
-    <div class="redTile"></div><div class="blackTile"></div>
-    <div class="redTile"></div><div class="blackTile"></div>
-
-    <div class="blackTile"></div><div class="redTile"></div>
-    <div class="blackTile"></div><div class="redTile"></div>
-    <div class="blackTile"></div><div class="redTile"></div>
-    <div class="blackTile"></div><div class="redTile"></div>
-
-    <div class="redTile"></div><div class="blackTile"></div>
-    <div class="redTile"></div><div class="blackTile"></div>
-    <div class="redTile"></div><div class="blackTile"></div>
-    <div class="redTile"></div><div class="blackTile"></div>
-
-    <div class="blackTile"></div><div class="redTile"></div>
-    <div class="blackTile"></div><div class="redTile"></div>
-    <div class="blackTile"></div><div class="redTile"></div>
-    <div class="blackTile"></div><div class="redTile"></div>
-
-</div>
+    <div id="board"></div>
+    <script src="{{ url_for('static', filename='js/onePlayer.js') }}"></script>
 </body>
 </html>
-
-<script>
-    gameBoard = [];
-    for (let i = 0; i < 8; i++) {
-    gameBoard[i] = [];
-        for (let j = 0; j < 8; j++) {
-        gameBoard[i][j] = 0;
-        console.log(gameBoard[i][j]);
-        }
-        console.log("\n");
-    }
-</script>
