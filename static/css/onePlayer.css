@@ -1,0 +1,26 @@
+.game-board{
+    display: grid;
+    grid-template-columns: 100px 100px 100px 100px 100px 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px 100px 100px 100px 100px 100px;
+    justify-content: center;
+}
+
+.redTile {
+    background-color: red;
+    border: .5px solid white;
+}
+
+.blackTile {
+    background-color: black;
+    border: .5px solid white;
+}
+
+.blackTile .whitePiece {
+    border-radius: 100%;
+    background-color: white;
+    height: 90px;
+    width: 90px;
+    position: relative;
+    top: 3px;
+    left: 3px;
+}
