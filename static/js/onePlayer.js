@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
             square.addEventListener("click", () => handleSquareClick(row, col));
             board.appendChild(square);
 
-            // Add pieces to the board (for demonstration purposes)
+            // Add pieces to the board
             if (((row + col) % 2 === 1) && (row < 3 || row > 4)) {
                 addPiece(row, col, row < 3 ? 'red' : 'white')
             }
@@ -78,8 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // There's a piece at the jumped-over position
                     const jumpedPiece = jumpedSquare.children[0];
 
-                    // Assuming getPieceColor is defined elsewhere in your code
-                    if (getPieceColor(jumpedPiece) !== getPieceColor(piece)) {
+                    if (getPieceColor(jumpedPiece) === 'white' || getPieceColor(jumpedPiece) === 'white-king') {
                         // Valid jump, opponent's piece is between current and target positions
                         console.log("Jumping over an opponent's piece is valid.");
                         jumpedSquare.removeChild(jumpedPiece);
@@ -115,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return true;
             }
         }
-        //for white's turn
+        // For white's turn
         else if(getPieceColor(piece) === 'white' || getPieceColor(piece) === 'white-king'){
             if(!turn){
                 console.log("It's not your turn.");
@@ -141,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     const jumpedPiece = jumpedSquare.children[0];
 
                     // Assuming getPieceColor is defined elsewhere in your code
-                    if (getPieceColor(jumpedPiece) !== getPieceColor(piece)) {
+                    if (getPieceColor(jumpedPiece) === 'red' || getPieceColor(jumpedPiece) === 'red-king') {
                         // Valid jump, opponent's piece is between current and target positions
                         console.log("Jumping over an opponent's piece is valid.");
                         jumpedSquare.removeChild(jumpedPiece);
