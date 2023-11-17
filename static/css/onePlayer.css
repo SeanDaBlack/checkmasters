@@ -9,33 +9,43 @@ body {
 
 #board {
     display: grid;
-    grid-template-columns: repeat(8, 50px);
+    grid-template-columns: repeat(8, 100px);
+    border: 2px solid black;
+    gap: 2px;
 }
 
 .square {
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
 }
 
-.white {
-    background-color: #eee;
+.red {
+    background-color: red;
 }
 
 .black {
-    background-color: #555;
+    background-color: black;
 }
 
 .piece {
-    width: 40px;
-    height: 40px;
+    width: 85px;
+    height: 85px;
     border-radius: 50%;
-    margin: 5px;
+    margin: 7px;
 }
 
 .red-piece {
-    background-color: #f00;
+    background-color: Crimson;
 }
 
-.black-piece {
-    background-color: #000;
+.white-piece {
+    background-color: white;
+}
+
+.white-king-piece {
+    background-color: grey;
+}
+
+.red-king-piece {
+    background-color: darkred;
 }
