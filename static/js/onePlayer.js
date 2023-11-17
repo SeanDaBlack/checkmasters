@@ -89,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             // If the piece has reached the last row, add a class to make it a king
                             piece.classList.add('red-king-piece');
                         }
+                        //TODO: add method to jump over multiple pieces if possible
                         turn = !turn; // Toggle turn after a successful jump
                         return true;
                     }
@@ -155,6 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             // If the piece has reached the last row, add a class to make it a king
                             piece.classList.add('white-king-piece');
                         }
+                        //TODO: add method to jump over multiple pieces if possible
                         turn = !turn; // Toggle turn after a successful jump
                         return true;
                     }
