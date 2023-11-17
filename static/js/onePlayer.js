@@ -30,9 +30,11 @@ document.addEventListener("DOMContentLoaded", function () {
             selectedPiece = square.children[0];
         } else if (selectedPiece) {
             const parentSquare = selectedPiece.parentNode;
+
             const currentIndex = Array.from(parentSquare.parentNode.children).indexOf(parentSquare);
             const currentRow = Math.floor(currentIndex / 8);
             const currentCol = currentIndex % 8;
+
             const targetIndex = Array.from(square.parentNode.children).indexOf(square);
             const targetRow = Math.floor(targetIndex / 8);
             const targetCol = targetIndex % 8;
@@ -46,8 +48,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 square.appendChild(selectedPiece);
                 selectedPiece = null;
                 document.querySelectorAll('.square').forEach(s => s.classList.remove('selected'));
-            } else{
-
             }
         }
     }
@@ -64,9 +64,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 return false;
             }
             else if(currentRow > targetRow && getPieceColor(piece) != 'red-king'){
+                // Doesn't tigger if the piece is a king as they can move backwards
                 console.log('Invalid move: cannot move backwards.');
                 return false;
             }
+            // Checks if the target tile is exactly 2 diagonal titles from original piece
             else if(Math.abs(currentRow - targetRow) === 2 && Math.abs(currentCol - targetCol) === 2){
                 const jumpedRow = (currentRow + targetRow) / 2;
                 const jumpedCol = (currentCol + targetCol) / 2;
@@ -100,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     return false;
                 }
             }
+            // Checks to see if the target tile is more than 1 tile away
             else if(Math.abs(currentRow - targetRow) != 1 || Math.abs(currentCol - targetCol) != 1){
                 console.log('Invalid move: Target tile too far.');
                 return false;
@@ -110,10 +113,12 @@ document.addEventListener("DOMContentLoaded", function () {
                     // If the piece has reached the last row, add a class to make it a king
                     piece.classList.add('red-king-piece');
                 }
-                turn = !turn;
+                turn = !turn; // Ends turn
                 return true;
             }
         }
+
+
         // For white's turn
         else if(getPieceColor(piece) === 'white' || getPieceColor(piece) === 'white-king'){
             if(!turn){
@@ -125,9 +130,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 return false;
             }
             else if(currentRow < targetRow && getPieceColor(piece) != 'white-king'){
+                // Doesn't tigger if the piece is a king as they can move backwards
                 console.log('Invalid move: cannot move backwards.');
                 return false;
             }
+            // Checks if the target tile is exactly 2 diagonal titles from original piece
             else if(Math.abs(currentRow - targetRow) === 2 && Math.abs(currentCol - targetCol) === 2){
                 const jumpedRow = (currentRow + targetRow) / 2;
                 const jumpedCol = (currentCol + targetCol) / 2;
@@ -139,7 +146,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     // There's a piece at the jumped-over position
                     const jumpedPiece = jumpedSquare.children[0];
 
-                    // Assuming getPieceColor is defined elsewhere in your code
                     if (getPieceColor(jumpedPiece) === 'red' || getPieceColor(jumpedPiece) === 'red-king') {
                         // Valid jump, opponent's piece is between current and target positions
                         console.log("Jumping over an opponent's piece is valid.");
@@ -162,6 +168,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     return false;
                 }
             }
+            // Checks to see if the target tile is more than 1 tile away
             else if(Math.abs(currentRow - targetRow) != 1 || Math.abs(currentCol - targetCol) != 1){
                 console.log('Invalid move: Target tile too far.');
                 return false;
@@ -172,16 +179,19 @@ document.addEventListener("DOMContentLoaded", function () {
                     // If the piece has reached the last row, add a class to make it a king
                     piece.classList.add('white-king-piece');
                 }
-                turn = !turn;
+                turn = !turn; // Ends turn
                 return true;
             }
         }
         else{
-            console.log('How did you get here?');
+            // This should be impossible to reach. If this happens, tell me ASAP
+            console.log('How did you get here? Please tell the dev if you see this.');
             return false;
         }
     }
 
+
+    // Returns piece color
     function getPieceColor(piece) {
         if (piece.classList.contains('red-king-piece')) {
             return 'red-king'
@@ -208,7 +218,7 @@ document.addEventListener("DOMContentLoaded", function () {
             event.dataTransfer.setData("text/plain", ''); // Required for Firefox
         }
     });*/
-
+    // An attempt to add drag and drop. breaks if removed
     document.addEventListener("dragover", function (event) {
         event.preventDefault();
     });
@@ -223,6 +233,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+// Adds a piece of the specified color at the provided location
 function addPiece(row, col, color) {
     const piece = document.createElement("div");
     piece.className = `piece ${color}-piece`;
