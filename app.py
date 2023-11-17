@@ -12,7 +12,7 @@ from static.py.chat import socketio
 from flask_sqlalchemy import SQLAlchemy
 from static.py.models import User, db
 import uuid
-from static.py.user_repository import _user_repo as users
+from static.py.user_repository import _user_repo as users, create_username
 from static.py.PassHandler import PassHandler
 
 
@@ -37,7 +37,7 @@ flow = Flow.from_client_secrets_file(
     client_secrets_file=client_secrets_file,
     scopes=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email",
             "openid"],
-    redirect_uri="http://127.0.0.1:5000/callback?login=google"
+    redirect_uri="http://127.0.0.1:5000/callback"
 )
 
 
@@ -76,7 +76,8 @@ def callback():
     id_info = id_token.verify_oauth2_token(
         id_token=credentials._id_token,
         request=token_request,
-        audience=GOOGLE_CLIENT_ID
+        audience=GOOGLE_CLIENT_ID,
+        clock_skew_in_seconds=10
     )
 
     session["login_type"] = "google"
@@ -85,6 +86,13 @@ def callback():
     session["given_name"] = id_info.get("given_name")
     session["email"] = id_info.get("email")
     session["profile_picture"] = id_info.get("picture")
+    session["family_name"] = id_info.get("family_name") if id_info.get("family_name") != None else ""
+
+    if users.get_user_by_email(session["email"]) is None:
+
+        username = create_username(session["given_name"], session["family_name"])
+        user = users.create_user(session["given_name"], session["family_name"], session["email"], username, str(uuid.uuid4()))
+        return redirect("/home")
 
     return redirect("/home")
 
