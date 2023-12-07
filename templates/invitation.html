@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invite Friends</title>
+    <link rel="stylesheet" href="../static/css/inbox.css">
+    <script src="{{ url_for('static', filename='js/newMessage.js') }}"></script>
+    <style>
+        .friends-list div {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center align horizontally */
+            margin-bottom: 10px;
+        }
+
+        .name-box {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="big-box">
+        <div class="container">
+            <div class="container-box">
+                <h1>Invite Friends</h1>
+                <div class="actions">
+                    <a href="/home"><button>Home</button></a>
+                    <a href="/profile"><button>Profile</button></a>
+                    <a href="#"><button>Settings</button></a>
+                    <a href="#"><button>Tournaments</button></a>
+                    <a href="/logout"><button>Logout</button></a>
+                </div>
+            </div>
+
+            <div class="friends-list">
+                <h2>Friends List</h2>
+                <div onclick="showProfile('jhnoe1', 'Novice')">
+                    <div class="name-box">
+                        <a href="#">John Doe</a>
+                    </div>
+                </div>
+                <div onclick="showProfile('amarie3430', 'Amateur')">
+                    <div class="name-box">
+                        <a href="#">Ann Marie</a>
+                    </div>
+                </div>
+                <div onclick="showProfile('dmz@32', 'Pro')">
+                    <div class="name-box">
+                        <a href="#">Diego Martinez</a>
+                    </div>
+                </div>
+                <div onclick="showProfile('cooperRy45324', 'Pro')">
+                    <div class="name-box">
+                        <a href="#">Roy Cooper</a>
+                    </div>
+                </div>
+                <div onclick="showProfile('alisha341', 'Pro')">
+                    <div class="name-box">
+                        <a href="#">Alisha Chinnai</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile" id="profile">
+                <h2>Profile</h2>
+                <p id="friendName"></p>
+                <p id="friendRank"></p>
+                <button onclick="sendInvitation()">Send Invitation</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showProfile(name, rank) {
+            const profileDiv = document.getElementById('profile');
+            const friendName = document.getElementById('friendName');
+            const friendRank = document.getElementById('friendRank');
+
+            friendName.textContent = 'username: ' + name;
+            friendRank.textContent = 'Rank: ' + rank;
+
+            // Show the profile section
+            profileDiv.style.display = 'block';
+        }
+
+        function sendInvitation() {
+            // Implement logic to send the invitation
+            alert('Invitation sent!');
+        }
+    </script>
+</body>
+</html>

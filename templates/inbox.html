@@ -2,10 +2,104 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Profile</title>
+    <title>Inbox</title>
     <link rel="stylesheet" href="../static/css/inbox.css">
-    <script src="{{ url_for('static', filename='js/newMessage.js') }}"></script>
 
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .big-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('../../images/uncc4.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+            max-width: 600px; /* Limit container width */
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .actions {
+            margin-top: 20px;
+        }
+
+        .actions a {
+            text-decoration: none;
+            margin: 0 10px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .actions button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .inbox {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .message-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .message-list li {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        .message-sender {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .message-content {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .new-message-button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 20px 0;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
     <div class="big-box">
@@ -13,8 +107,9 @@
             <div class="container-box">
                 <h1>49er's CheckMates</h1>
                 <div class="actions">
-                    <a href="/home"><button>Home</button></a>
-                    <a href="/profile"><button>Profile</button></a>
+                    <a href="./home.html"><button>Home</button></a>
+                    <a href="./profile.html"><button>Profile</button></a>
+                    <a href="./invitation.html"><button>Invite Friends</button></a>
                     <a href="#"><button>Settings</button></a>
                     <a href="#"><button>Tournaments</button></a>
                     <a href="/logout"><button>Logout</button></a>
@@ -33,9 +128,10 @@
                         <div class="message-content">Don't forget our chess match tomorrow!</div>
                     </li>
                 </ul>
-<button class="new-message-button" id="new-message-button" onclick="openNewMessageWindow()">Send New Message</button>
+                <button class="new-message-button" id="new-message-button" onclick="openNewMessageWindow()">Send New Message</button>
             </div>
         </div>
     </div>
+
 </body>
 </html>
