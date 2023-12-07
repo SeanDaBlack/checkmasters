@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Host</title>
+    <link rel="stylesheet" href="../static/css/signup.css">
+    <link rel="stylesheet" href="../static/css/profileCSS.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+        integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+
+    <div class="container-box">
+        <h1>49er's CheckMates</h1>
+
+        <form action="/game">
+            <input id=lobby name="lobby" type="text" placeholder="Enter Lobby Name">
+            <div class="check">
+                <label for="spectate">Allow Spectators</label>
+                <input type="checkbox" name="spectate" id="allow-spectate">
+                <span class="bigcheck-target"></span>
+            </div>
+            <button id="start">Start</button>
+        </form>
+
+
+    </div>
+
+
+
+
+    <script type="text/javascript" charset="utf-8">
+        socket = io({ autoConnect: false });
+
+        document.getElementById("start").addEventListener("click", function () {
+            socket = io({ autoConnect: false });
+            console.log("test2")
+            const lobby_name = document.getElementById("lobby").value;
+
+            socket.connect();
+            socket.on('connect', function () {
+                socket.emit('join', { "lobby": lobby_name });
+            });
+
+        })
+
+
+    </script>
+
+
+
+</body>
+
+</html>

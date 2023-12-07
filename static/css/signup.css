@@ -1,0 +1,96 @@
+
+
+div form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 20px;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    background-color: #ecf0f1;
+    justify-content: center;
+    align-items: center;
+}
+div form input {
+    margin: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    width: 100%;
+
+}
+div form div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+div form div input {
+    margin: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    width: 50%;
+}
+input {
+    margin: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    /* width: 100%; */
+
+}
+
+
+.check {
+    display: flex;
+}
+
+/* checkbox */
+div form input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+    margin: 1rem;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background-color:grey;
+    appearance: none;
+    cursor: pointer;
+
+}
+input[type="checkbox"]:checked{
+    background-color:green;
+}
+
+.submit {
+    background-color: #B3A369;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #FFFFFF;
+    color: #B3A369;
+}
+
+button.submit {
+    margin: 1.5rem;
+}
+
+.alert {
+    color: red;
+    font-size: 1rem;
+    font-weight: bold;
+    border: red 1px solid;
+    margin: 0;
+    padding: 0;
+
+}

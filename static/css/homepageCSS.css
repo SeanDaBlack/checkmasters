@@ -6,7 +6,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url('../../images/uncc2.jpg'); 
+    background-image: url("static/images/uncc2.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 }
