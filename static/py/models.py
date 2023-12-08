@@ -10,11 +10,11 @@ class User(db.Model):
     email = db.Column(db.String(150), unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
 
-    # rank = db.Column(db.String(80), nullable=False, default="Bronze")
-    # elo = db.Column(db.Integer, nullable=False, default=1000)
-    # wins = db.Column(db.Integer, nullable=False, default=0)
-    # losses = db.Column(db.Integer, nullable=False, default=0)
-    # draws = db.Column(db.Integer, nullable=False, default=0)
+    rank = db.Column(db.String(80), nullable=False, default="Bronze")
+    elo = db.Column(db.Integer, nullable=False, default=1000)
+    wins = db.Column(db.Integer, nullable=False, default=0)
+    losses = db.Column(db.Integer, nullable=False, default=0)
+    draws = db.Column(db.Integer, nullable=False, default=0)
 
 
     def __repr__(self):

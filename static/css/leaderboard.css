@@ -1,0 +1,19 @@
+
+.leaderboard-player {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    font-size: 1.2em;
+    /* text-decoration: none; */
+
+}
+
+.leaderboard-player {
+
+    font-size: x-large;
+
+}

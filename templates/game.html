@@ -15,11 +15,17 @@
     
 </head>
 <body>
+    <div class="checkers">
+        {% include "player1.html" %}
+    </div>
     <button id="open-room">Open Room</button>
     <div id='game' class="frame">
         <!-- <iframe class="chat" src="chat" frameborder="0"scrolling="no"></iframe> -->
+        
         {% with user_info=user_info %}
+        <div class="chat">
         {% include "chat.html" %}
+        </div>
         {% endwith %}
     </div>
     <input id='hidden-room' class="hidden-name" value="{{ lobby_name }}">

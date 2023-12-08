@@ -1,11 +1,13 @@
 .frame {
-    border-style: none;
-    width: 50%;
-    height: 99%;
-    position: absolute;
-    right: 0;
+    /* border-style: none; */
+    width: 40vw;
+    height: 80%;
+    /* position: absolute;
+    right: 0; */
 }
-
+#open-room {
+    position: absolute;
+}
 body {
     /* height: 100%; */
     background-color: #f0f0f0;
@@ -16,6 +18,15 @@ body {
     align-items: center;
     min-height: 100vh;
     min-width: 100vw;
+}
+
+.chat {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
 }
 
 .container-box {

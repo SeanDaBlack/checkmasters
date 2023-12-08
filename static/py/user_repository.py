@@ -31,6 +31,47 @@ class UserRepository:
         db.session.commit()
 
         return user
+    
+
+    def get_top_users(self, number: int) -> list:
+
+        #Get users with highest elo = to number
+        return User.query.order_by(User.elo.desc()).limit(number).all()
+    
+    def add_win(self, user_id: int):
+        user = self.get_user_by_id(user_id)
+        user.wins += 1
+        db.session.commit()
+    
+    def add_loss(self, user_id: int):
+        user = self.get_user_by_id(user_id)
+        user.losses += 1
+        db.session.commit()
+
+    def add_draw(self, user_id: int):
+        user = self.get_user_by_id(user_id)
+        user.draws += 1
+        db.session.commit()
+    
+    def update_elo(self, user_id: int, elo: int):
+        user = self.get_user_by_id(user_id)
+        user.elo = elo
+        db.session.commit()
+
+
+    def get_wins(self, user_id: int):
+        user = self.get_user_by_id(user_id)
+        return user.wins
+    
+    def get_losses(self, user_id: int):
+        user = self.get_user_by_id(user_id)
+        return user.losses
+    def get_draws(self, user_id: int):
+        user = self.get_user_by_id(user_id)
+        return user.draws
+
+
+
 
 
 _user_repo = UserRepository()

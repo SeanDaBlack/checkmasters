@@ -1,0 +1,31 @@
+{% extends '_layouts.html' %}
+
+{% block title %}Leaderboard{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/leaderboard.css') }}">
+{% endblock %}
+
+
+{% block body %}
+
+    <div>
+    <h1>Leaderboard</h1>
+    <h2>Top 10 players</h2>
+
+    {% for i in range(length) %}
+    <div class="leaderboard-player">
+    <div class="leaderboard-player-id">
+        <p>{{ i+1 }}</p>
+    </div>
+        <div class="leaderboard-player-name">
+            <p>{{ top_users[i].username }}</p>
+        </div>
+        <div class="leaderboard-player-score">
+            <p>{{top_users[i].elo}}</p>
+        </div>
+    </div>
+
+    {% endfor %}
+    </div>
+{% endblock %}

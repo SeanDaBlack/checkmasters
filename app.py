@@ -25,6 +25,8 @@ socketio.init_app(app)
 db.init_app(app)
 with app.app_context():
     db.create_all()
+    # db.drop_all()
+    # db.session.commit()
 
 pass_handler = PassHandler()
 
@@ -216,6 +218,16 @@ def home():
 @app.route("/1player")
 def onePlayer():
     return render_template("player1.html")
+
+@app.route("/leaderboard")
+def leaderboard():
+    global users
+    top_users = users.get_top_users(10)
+    for user in top_users:
+        print(user.username, user.elo)
+
+    return render_template("leaderboard.html", top_users=top_users, length=len(top_users))
+
 
 
 if __name__ == "__main__":
