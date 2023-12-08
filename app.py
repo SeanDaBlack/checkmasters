@@ -228,7 +228,9 @@ def leaderboard():
 
     return render_template("leaderboard.html", top_users=top_users, length=len(top_users))
 
-
+@app.route("/settings")
+def settings():
+    return render_template("settings.html")
 
 if __name__ == "__main__":
     socketio.run(app, debug=True, allow_unsafe_werkzeug=True)
