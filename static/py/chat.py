@@ -1,6 +1,7 @@
 from flask import request
 from .extensions import socketio
 from flask_socketio import emit, join_room, leave_room
+from purgo_malum import client
 
 users = {}
 
@@ -26,6 +27,11 @@ def handle_room_message(data):
     # msg = data["data"].split(':')[1].strip()
 
     message = Message(data)
+    message.clean_message()
+    print(message.clean_message())
+    if message.clean_message() == "Message contains profanity":
+        emit('filter', {"message":message.clean_message(), 'name':message.name}, to=data['room'])
+        return
     # print(message.to_string())
 
     emit('chat', message.to_dict(), to=data['room'])
@@ -64,11 +70,21 @@ class Message():
 
     def clean_message(self):
         # Add functionality for checking for bad words / filter words
-
-        return self.message
+        # print(self.message[0])
+        return self.filter_message(self.message)
+        # return self.message
     
     def to_string(self):
         return f"{self.name}: {self.message}"
     
     def to_dict(self):
         return {"name":self.name, "message": self.message}
+
+
+    def filter_message(self, message):
+        prediction = client.contains_profanity(message)
+        if prediction == True:
+            return "Message contains profanity"
+        else:
+
+            return message
