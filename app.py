@@ -24,6 +24,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.abspath('static/d
 socketio.init_app(app)
 db.init_app(app)
 with app.app_context():
+
     db.create_all()
     # db.drop_all()
     # db.session.commit()
@@ -172,12 +173,15 @@ def inbox():
 @app.route("/profile")
 def profile():
     global users
+    print(users.get_wins(session.get("username")))
     
     user_info = {
         "name": session.get("given_name"),
         "full_name": session.get("name"),
         "email": session.get("email"),
-        "profile_picture": session.get("profile_picture")
+        "profile_picture": session.get("profile_picture"),
+        "wins": users.get_wins(session.get("username")),
+        "losses": users.get_losses(session.get("username")),
     }
     return render_template("profile.html", user_info=user_info)
 
@@ -199,6 +203,8 @@ def game():
         "full_name": session.get("name"),
         "email": session.get("email"),
         "profile_picture": session.get("profile_picture"),
+        "wins": users.get_wins(session.get("username")),
+        "losses": users.get_losses(session.get("username")),
     }
     user_info["name"] = session.get("given_name")
     user_info["profile_picture"] = "static/images/userAccount.jpg"
