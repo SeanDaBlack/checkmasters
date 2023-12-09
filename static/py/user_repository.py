@@ -26,7 +26,7 @@ class UserRepository:
     def create_user(self, fname: str, lname: str, email: str, username: str, password: str) -> User:
         ''' Create a new user and return it'''
         user = User(first_name=fname, last_name=lname, email=email,
-                    username=username, password=password)
+                    username=username, password=password, elo=1000, wins=0, losses=0, draws=0)
         db.session.add(user)
         db.session.commit()
 
@@ -62,10 +62,15 @@ class UserRepository:
     def get_wins(self, username):
         user = self.get_user_by_username(username)
         print(username)
+        if user.wins is None:
+            return 0
         return user.wins
     
     def get_losses(self, username):
         user = self.get_user_by_username(username)
+        print(username)
+        if user.losses is None:
+            return 0
         return user.losses
     def get_draws(self, username):
         user = self.get_user_by_username(username)

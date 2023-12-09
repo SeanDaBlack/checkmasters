@@ -98,6 +98,10 @@ def callback():
         session["username"] = user.username
         return redirect("/home")
 
+    else:
+        user = users.get_user_by_email(session["email"])
+        session["username"] = user.username
+
     return redirect("/home")
 
 
@@ -173,7 +177,20 @@ def inbox():
 @app.route("/profile")
 def profile():
     global users
-    print(users.get_wins(session.get("username")))
+
+    user = users.get_user_by_username(session.get("username"))
+    print(session.get("username"))
+
+    # if user.get_wins(session.get("username")) is None:
+    #     users.add_win(session.get("username"))
+    #     users.add_loss(session.get("username"))
+    # # wins = 0
+    # # losses = 0
+    # else:
+    #     wins = users.get_wins(session.get("username"))
+    #     losses = users.get_losses(session.get("username"))
+
+    
     
     user_info = {
         "name": session.get("given_name"),
