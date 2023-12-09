@@ -177,9 +177,7 @@ def profile():
         "name": session.get("given_name"),
         "full_name": session.get("name"),
         "email": session.get("email"),
-        "profile_picture": session.get("profile_picture"),
-        "wins": users.get_wins(session.get("username")),
-        "losses": users.get_losses(session.get("username")),
+        "profile_picture": session.get("profile_picture")
     }
     return render_template("profile.html", user_info=user_info)
 
