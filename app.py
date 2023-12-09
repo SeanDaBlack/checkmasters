@@ -94,6 +94,7 @@ def callback():
 
         username = create_username(session["given_name"], session["family_name"])
         user = users.create_user(session["given_name"], session["family_name"], session["email"], username, str(uuid.uuid4()))
+        session["username"] = user.username
         return redirect("/home")
 
     return redirect("/home")
@@ -120,6 +121,7 @@ def loginuser():
         # print("Incorrect password")
         return render_template('elogin.html', error="Incorrect password")
     print(user.username)
+    session["username"] = user.username
     session["name"] = user.username
     session["given_name"] = user.first_name
     # print(user.first_name)
@@ -169,11 +171,15 @@ def inbox():
 
 @app.route("/profile")
 def profile():
+    global users
+    
     user_info = {
         "name": session.get("given_name"),
         "full_name": session.get("name"),
         "email": session.get("email"),
-        "profile_picture": session.get("profile_picture")
+        "profile_picture": session.get("profile_picture"),
+        "wins": users.get_wins(session.get("username")),
+        "losses": users.get_losses(session.get("username")),
     }
     return render_template("profile.html", user_info=user_info)
 
@@ -195,7 +201,6 @@ def game():
         "full_name": session.get("name"),
         "email": session.get("email"),
         "profile_picture": session.get("profile_picture"),
-        # "sid": request.sid
     }
     user_info["name"] = session.get("given_name")
     user_info["profile_picture"] = "static/images/userAccount.jpg"
@@ -222,9 +227,9 @@ def onePlayer():
 @app.route("/leaderboard")
 def leaderboard():
     global users
-    top_users = users.get_top_users(10)
-    for user in top_users:
-        print(user.username, user.elo)
+    top_users = users.get_top_users(5)
+    # for user in top_users:
+    #     print(user.username, user.elo)
 
     return render_template("leaderboard.html", top_users=top_users, length=len(top_users))
 

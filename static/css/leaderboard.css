@@ -5,7 +5,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    /* padding: 10px; */
     border-bottom: 1px solid #ccc;
     font-size: 1.2em;
     /* text-decoration: none; */
@@ -16,4 +16,25 @@
 
     font-size: x-large;
 
+}
+
+button {
+    background-color: #B3A369;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 5px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #FFFFFF;
+    color: #B3A369;
+}
+
+button a {
+    text-decoration: none;
+    color: #000000;
 }

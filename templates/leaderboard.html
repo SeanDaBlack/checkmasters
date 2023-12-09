@@ -11,7 +11,7 @@
 
     <div>
     <h1>Leaderboard</h1>
-    <h2>Top 10 players</h2>
+    <h2>Top {{length}} players</h2>
 
     {% for i in range(length) %}
     <div class="leaderboard-player">
@@ -25,7 +25,8 @@
             <p>{{top_users[i].elo}}</p>
         </div>
     </div>
-
+    
     {% endfor %}
+    <a href="/home"><button>Return Home</a></button>
     </div>
 {% endblock %}
