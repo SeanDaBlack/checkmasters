@@ -12,18 +12,16 @@
             <h2>Hello, {{ user_name }}!</h2>
             <p>Welcome to CheckMates! Here, you can find the settings, leaderboard, upcoming tournaments, and more.</p>
             <div class="horizontal-buttons">
-                <a href="#"><button class="button settings-button">Settings</button></a>
-                <a href="/home"><button class="button home-button">Home</button></a>
-                <a href="/profile"><button class="button profile-button">Profile</button></a>
-                <a href="tournaments"><button class="button tournaments-button">Tournaments</button></a>
-            </div>
-        </div>
-        <div class="navigation">
-            <div class="vertical-buttons">
                 <a href="/1player"><button class="button singlePlayer-button">Single Player</button></a>
                 <a href="/host"><button class="button player1-button">Host</button></a>
                 <a href="/join"><button class="button player2-button">Join</button></a>
                 <a href="/spectate"><button class="button spectate-button">Spectate</button></a>
+            </div>
+        </div>
+        <div class="navigation">
+            <div class="vertical-buttons">
+                <a href="/profile"><button class="button profile-button">Profile</button></a>
+                <a href="/settings"><button class="button settings-button">Settings</button></a>
                 <a href="/leaderboard"><button class="button leaderboard-button">Leaderboard</button></a>
                 <button class="button tutorial-button" id="tutorialButton" onclick="openTutorialModal()">View Tutorial</button>
             </div>

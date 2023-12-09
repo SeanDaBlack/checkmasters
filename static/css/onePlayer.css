@@ -11,7 +11,6 @@ body {
     display: grid;
     grid-template-columns: repeat(8, 100px);
     border: 2px solid black;
-    gap: 2px;
 }
 
 .square {
